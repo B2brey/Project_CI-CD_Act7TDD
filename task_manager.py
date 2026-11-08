@@ -23,8 +23,16 @@ class TaskManager:
             if task.id == task_id:
                 task.completed = completed
                 return task
-        # ejecuta excepcion al no encontrar el la tareas
+        # ejecuta excepcion al no encontrar la tareas
         raise ValueError(f"Task with ID {task_id} not found.")
 
     def delete_task(self, task_id) -> None:
         self.tasks = [task for task in self.tasks if task.id != task_id]
+
+    def get_task(self, task_id) -> Task:
+        for task in self.tasks:
+            if task.id == task_id:
+                return task
+
+        # ejecuta una excepción al no encontrar la tarea
+        raise ValueError(f"Task with ID {task_id} not found.")

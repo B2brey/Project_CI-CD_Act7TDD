@@ -41,3 +41,19 @@ def test_delete_task():
     manager.delete_task(task_id)
 
     assert len(manager.tasks) == 0
+
+
+def test_get_task():
+    manager = TaskManager()
+    task = manager.create_task("Necesito café")
+    task_id = task.id
+
+    assert manager.get_task(task_id) == task
+
+
+# este caso comprueba el lanzamiento de una excepción
+# en caso de no encontrar la tarea solicitada
+def test_get_task_not_found():
+    manager = TaskManager()
+    with pytest.raises(ValueError, match="Task with ID 999 not found."):
+        manager.get_task(999)
