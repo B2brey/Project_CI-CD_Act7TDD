@@ -29,3 +29,15 @@ def test_update_task_not_found():
     manager = TaskManager()
     with pytest.raises(ValueError, match="Task with ID 999 not found."):
         manager.update_task_status(999, completed=True)
+
+
+def test_delete_task():
+    manager = TaskManager()
+    task = manager.create_task("Revisar código")
+    task_id = task.id
+
+    assert len(manager.tasks) == 1
+
+    manager.delete_task(task_id)
+
+    assert len(manager.tasks) == 0

@@ -25,3 +25,6 @@ class TaskManager:
                 return task
         # ejecuta excepcion al no encontrar el la tareas
         raise ValueError(f"Task with ID {task_id} not found.")
+
+    def delete_task(self, task_id) -> None:
+        self.tasks = [task for task in self.tasks if task.id != task_id]
