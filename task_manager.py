@@ -17,3 +17,11 @@ class TaskManager:
         self.tasks.append(task)
         self.next_id += 1
         return task
+
+    def update_task_status(self, task_id, completed=False) -> Task:
+        for task in self.tasks:
+            if task.id == task_id:
+                task.completed = completed
+                return task
+        # ejecuta excepcion al no encontrar el la tareas
+        raise ValueError(f"Task with ID {task_id} not found.")
